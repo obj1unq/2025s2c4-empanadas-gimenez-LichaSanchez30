@@ -1,16 +1,38 @@
 import empleados.*
 
 test "punto1: Planteo inicial" {
-
-  baigorria.vender(500)
-  galvan.sueldo(20000)
-  baigorria.vender(300)
-  assert.equals(12000, baigorria.sueldo())
-  assert.equals(20000, galvan.sueldo())
-  
+  baigorria.venta(500)
+  gimenez.aumentarSueldo(galvan, 20000)
+  baigorria.venta(300)
   gimenez.pagarSueldo(baigorria)
   gimenez.pagarSueldo(galvan)
-  assert.equals(268000, gimenez.fondo())
-  
+  assert.equals(20000, galvan.consultarSueldo())
+  assert.equals(268000, gimenez.consultarFondos())  
 }
 
+test "punto 2: Qué hacen los empleados con lo que cobran"{
+  baigorria.venta(100)
+  baigorria.totalCobrado()
+  assert.equals(1500, baigorria.consultarAhorro())
+  assert.equals(0, baigorria.empanadasVendidas())
+}
+
+test "punto 3: Manejo fino de las finanzas de Galván" {
+  galvan.gastar(2000)
+  galvan.sueldoRecibido()
+  galvan.dinero()
+  galvan.gastar(13000)
+  galvan.sueldoRecibido()
+  galvan.gastar(3000)
+  galvan.gastar(15000)
+  assert.equals(0, galvan.dineroDisponible())
+  assert.equals(3000, galvan.deudaContraida())
+}
+
+/*
+- registrar la venta de 500 empanadas por parte de Baigorria
+- cambiar el sueldo de Galván a 20000
+- registrar la venta de otras 300 empanadas por parte de Baigorria
+- que Giménez le pague el sueldo a Baigorria
+- finalmente, que Giménez le pague el sueldo a Galván
+*/
