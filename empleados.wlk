@@ -3,7 +3,6 @@ object gimenez{
     var fondo = 300000
 
     method pagarSueldo(empleado) {
-        
         fondo = fondo - empleado.cobrarSueldo()
     }
 
@@ -31,30 +30,26 @@ object galvan{
     method consultarSueldo() = sueldo
 
     method gastar(monto){
-        deudaContraida = deudaContraida + monto
-        self.deuda()    
+        deudaContraida = monto + deudaContraida        
+       if(deudaContraida >= dineroDisponible){
+           self.deuda()
+       }else{
+            self.dinero()
+       }
     }
 
     
     method deuda() {
-         if(deudaContraida >= dineroDisponible){
             deudaContraida = deudaContraida - dineroDisponible
             dineroDisponible = 0
-         }else{
-            dineroDisponible = dineroDisponible - deudaContraida
-            deudaContraida = 0 
-         }
     }
     
 
     method dinero(){
-        if(dineroDisponible >= deudaContraida){
+            dineroDisponible >= deudaContraida
             dineroDisponible = dineroDisponible - deudaContraida
             deudaContraida = 0
-        }else{
-            deudaContraida = deudaContraida - dineroDisponible
-            dineroDisponible = 0
-        }
+        
     }
 
     method dineroDisponible() = dineroDisponible
